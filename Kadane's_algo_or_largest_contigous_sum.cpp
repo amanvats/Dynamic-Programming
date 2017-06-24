@@ -23,6 +23,7 @@ int main()
 		cin>>arr[i];
 	}
 	dp[0]=arr[0];
+	/*It follows very simple logic.for any ith element of an array,maximum contiguous sum is formed either when that element is included or excluded*/
 	for(int i=1;i<n;i++)
 	{
 		dp[i]=max((dp[i-1]+arr[i]),arr[i]);

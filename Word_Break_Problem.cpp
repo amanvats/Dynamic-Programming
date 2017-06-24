@@ -37,6 +37,10 @@ int main()
 	string s;cin>>s;	//string to split
 	int n = s.length();
 	str+=s; //final string to split is str. We have done this to make string 1 indexed
+	/*Logic: We will be using bottom up approach. The approach goes like : dp[i][j] contains boolen value showing if it is possible to split string from i to j into constituent words. we will move from bottom
+	to top in the sense of length like first checking if words of length 1 are possible,then 2, then 3 ans so on. Assume the dictionary have words like i,a,am,aman,vats and given string iamamanvats.
+	dp[1][1]=true as 'a' is in the dictionary..similarly we do for each 1 length chars,..As we move for 2 letter words ,like suppose 'ia' for instance. It is not present in the dictionary, we will make partition
+	of it to see if it consists of different constituent words, Here only one partition is possible..i,a.. */
 	for(int i=1;i<=n;i++)
 	{
 		if(contains(i,1))	dp[i][i]=true;
@@ -49,8 +53,8 @@ int main()
 		if(contains(i,len))	{	dp[i][j]=true;
 		}
 		else
-		{
-			for(int k=i;k<(len);k++){
+		{						//if the word is not present in the dictionary , we are partitioning it about different points. Say for example the word from 2 to 5 does not exist. Check for the 2-3 and 4-5.i.e.
+			for(int k=i;k<(len);k++){	//if both of these exist, then 2-3 and 4-5 are two words and hence 2-5 forms a valid combination of words.If it doesn't then split it about 4(2-4 and 5th alone)...and so on..
 				if(dp[i][k] && dp[k+1][j]){	dp[i][j]=true;	break;}
 				else dp[i][j]=false;
 			}
@@ -62,5 +66,7 @@ int main()
 		for(int j=0;j<=n;j++)	cout<<dp[i][j]<<" ";
 		cout<<'\n';
 	}
+	if(dp[1][n]==true)	cout<<"Yes"<<'\n';
+	else cout<<"No"<<'\n';
 return 0;
 }
