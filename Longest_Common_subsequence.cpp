@@ -21,19 +21,19 @@ int main()
 	string s1,s2,str;
 	cin>>str;
 	int length_1=str.length();
-	s1=" ";s1+=str;
+	s1=" ";s1+=str;		//to make it 1 based index
 	cin>>str;
-	int length_2=str.length();
-	s2=" ";s2+=str;
+	int length_2=str.length();	
+	s2=" ";s2+=str;		//to make it 1 based index
 	for(int i=0;i<=length_1;i++)	dp[0][i]=0;
 	for(int i=0;i<=length_2;i++)	dp[i][0]=0;
 	int max_len = 0;
-	for(int i=1;i<=length_2;i++)
-	{
-		for(int j=1;j<=length_1;j++)
+	for(int i=1;i<=length_2;i++)		//start comparing in bottom up manner like what is the lcs length if we pick 1st from s1 and 1st from s2, with 1st of one string, iterate comletely over other string
+	{	
+		for(int j=1;j<=length_1;j++)	
 		{
-			if(s1[j]==s2[i]){	dp[i][j] = dp[i-1][j-1] + 1;}
-			else {	dp[i][j] = max(dp[i-1][j],dp[i][j-1]);}
+			if(s1[j]==s2[i]){	dp[i][j] = dp[i-1][j-1] + 1;}	//if both string contains same char, increase the lcs length without those chars(i.e dp[i-1][j-1]) by 1
+			else {	dp[i][j] = max(dp[i-1][j],dp[i][j-1]);}	//if chars at a position are not same, max lcs length till that point comes either from string 1 without that character or string 2 without that character
 		}
 	}
 	max_len = dp[length_2][length_1];

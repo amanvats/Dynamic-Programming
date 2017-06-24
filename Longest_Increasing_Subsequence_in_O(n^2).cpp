@@ -25,10 +25,10 @@ int main()
 		cin>>arr[i];
 	}
 	for(int i=1;i<n;i++)
-	{
+	{								//for every element at i,iterate j from 0 till that element. Now, if the element at j is lesser than that at i, arr[i] is a potential member of lis
 		for(int j=0;j<i;j++)
 		{
-			if(arr[i]>arr[j]){	dp[i]=max(dp[i],(dp[j]+1));	}
+			if(arr[i]>arr[j]){	dp[i]=max(dp[i],(dp[j]+1));	}//in this case assign max of what is already there or what can be formed considering arr[j]
 		}
 	}
 	int ans=0;
