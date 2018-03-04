@@ -14,7 +14,7 @@ using namespace std;
 typedef long long int ll;typedef long int l;typedef pair<int,int> pii;
 const ll INF=(1<<28);
 const ll MOD=(1e9+7);
-int weight[10001];	//to keep the weight of different items
+int weight[10001];	//array to keep the weight of different items
 int val[10001];	//to keep the value associated with different items
 int dp[1001][1001];	//for tabulation of data used for bottom up solution
 int main()
